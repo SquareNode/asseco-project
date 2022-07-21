@@ -25,3 +25,11 @@ C:\Users\Instructor\Desktop\projekat\obj\Debug\net6.0\refint\projekat.dll
 C:\Users\Instructor\Desktop\projekat\obj\Debug\net6.0\projekat.pdb
 C:\Users\Instructor\Desktop\projekat\obj\Debug\net6.0\projekat.genruntimeconfig.cache
 C:\Users\Instructor\Desktop\projekat\obj\Debug\net6.0\ref\projekat.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Npgsql.dll
+C:\Users\Instructor\Desktop\projekat\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
