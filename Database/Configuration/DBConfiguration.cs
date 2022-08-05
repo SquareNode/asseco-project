@@ -17,6 +17,8 @@ namespace projekat.Database.Configuration {
             builder.Property(p => p.currency).IsRequired();
             builder.Property(p => p.mcc).IsRequired();
             builder.Property(p => p.kind).IsRequired();
+            builder.HasMany(p => p.split).WithOne(p => p.Transaction).HasForeignKey(p => p.TransactionId);
+            builder.Property(p => p.catCode).IsRequired(false);
 
         }
     }

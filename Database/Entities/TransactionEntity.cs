@@ -15,5 +15,9 @@ namespace projekat.Database.Entities {
         public int mcc  {get; set;}
 
         public string kind {get; set;}
+
+        public string catCode { get; set; }
+
+        public virtual List<SplitEntity> split { get; set; }
     }
 }

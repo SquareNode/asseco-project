@@ -1,8 +1,14 @@
-using projekat.Services;
 using projekat.Database.Repository;
 using projekat.Database;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+
+using Asseco.Rest.PersonalFinanceManagementAPI.Contracts.V1.ServiceContracts;
+using Asseco.Rest.PersonalFinanceManagementAPI.Implementations.Mock;
+using System.Reflection;
+using Asseco.Rest.PersonalFinanceManagementAPI.Implementations.EntityFramework;
+using projekat.Implementations.EntitityFramework;
+using Asseco.REST.Utilities.Serialization;
 
 namespace projekat;
 
@@ -13,9 +19,22 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services.AddScoped<ITransactionService, TransactionService>();
-        builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+        builder.Services.AddMvcWithDynamicCaseResolvers();
+
+
         builder.Services.AddScoped<ITransactionsRepository, TransactionRepository>();
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        builder.Services.AddScoped<ISplitRepository, SplitRepository>();
+
+        builder.Services.AddScoped<IPersonalFinanceManagementAPITransactionsQueryService, PersonalFinanceManagementApiQueryServiceTransactionEntityFramework>();
+        builder.Services.AddScoped<IPersonalFinanceManagementAPITransactionsCommandService, CommandEF>();
+        builder.Services.AddScoped<IPersonalFinanceManagementAPICategoriesCommandService, CategoryService>();
+        builder.Services.AddScoped<IPersonalFinanceManagementAPICategoriesQueryService, CategoryQueryService>();
+        builder.Services.AddScoped<IPersonalFinanceManagementAPIAnalyticsQueryService, AnalyticsServiceEF>();
+
+        builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
         builder.Services.AddDbContext<TransactionDBContext>(options => {
             options.UseNpgsql(CreateConnectionString(builder.Configuration));
@@ -35,11 +54,14 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseAuthorization();
+        // app.UseAuthorization();
 
-        //InitializeDatabase(app);
+        InitializeDatabase(app);
         app.MapControllers();
 
+        //postgres timestapms
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        
         app.Run();
     }
 

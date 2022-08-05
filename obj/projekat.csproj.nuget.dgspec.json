@@ -14,12 +14,14 @@
         "outputPath": "C:\\Users\\Instructor\\Desktop\\projekat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Instructor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Instructor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/nuget/v3/index.json": {}
         },
@@ -39,6 +41,30 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Asseco.Contracts": {
+              "target": "Package",
+              "version": "[6.3.4, )"
+            },
+            "Asseco.MicroserviceChassis": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Asseco.REST.Binding": {
+              "target": "Package",
+              "version": "[6.3.4, )"
+            },
+            "Asseco.REST.Contracts": {
+              "target": "Package",
+              "version": "[6.3.4, )"
+            },
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.6, )"
@@ -78,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

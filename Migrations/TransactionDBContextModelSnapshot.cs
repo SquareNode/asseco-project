@@ -22,6 +22,52 @@ namespace projekat.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("projekat.Database.Entities.CategoryEntity", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ParentCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("category", (string)null);
+                });
+
+            modelBuilder.Entity("projekat.Database.Entities.SplitEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("CatCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatCode");
+
+                    b.HasIndex("TransactionId");
+
+                    b.ToTable("split", (string)null);
+                });
+
             modelBuilder.Entity("projekat.Database.Entities.TransactionEntity", b =>
                 {
                     b.Property<string>("id")
@@ -32,6 +78,9 @@ namespace projekat.Migrations
 
                     b.Property<string>("beneficiaryName")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("catCode")
                         .HasColumnType("text");
 
                     b.Property<string>("currency")
@@ -59,6 +108,30 @@ namespace projekat.Migrations
                     b.HasKey("id");
 
                     b.ToTable("transaction", (string)null);
+                });
+
+            modelBuilder.Entity("projekat.Database.Entities.SplitEntity", b =>
+                {
+                    b.HasOne("projekat.Database.Entities.CategoryEntity", "Category")
+                        .WithMany()
+                        .HasForeignKey("CatCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("projekat.Database.Entities.TransactionEntity", "Transaction")
+                        .WithMany("split")
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Transaction");
+                });
+
+            modelBuilder.Entity("projekat.Database.Entities.TransactionEntity", b =>
+                {
+                    b.Navigation("split");
                 });
 #pragma warning restore 612, 618
         }
